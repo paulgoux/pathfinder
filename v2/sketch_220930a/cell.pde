@@ -44,7 +44,7 @@ class cell{
     strokeWeight(spacing/2);
     rect(xoffset+spacing/2+(w)*xpos,spacing/2+yoffset+(h)*ypos,w,h);
     fill(0,0,255);
-    //text(id,xoffset+spacing/2+(w)*xpos,spacing/2+yoffset+(h)*ypos+20);
+    if(visiteds)text(steps,xoffset+spacing/2+(w)*xpos,spacing/2+yoffset+(h)*ypos+20);
   };
   void draw2(){
     fill(col);
@@ -87,10 +87,11 @@ class cell{
   
   void parent(cell c){
     visitedBy.put(c,true);
+    c.steps++;
     //println("prent",c.id,id,visitedBy.get(c));
     parent.put(c,c.steps);
     pcol = c.pcol;
-    c.steps = steps;
+    steps = c.steps;
   };
   
   void visit(){

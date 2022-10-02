@@ -19,6 +19,6 @@ int [] cells = {2,3,4};
 void draw(){
   background(255);
   p.draw();
-  p.findOpposite(cells);
+  p.findOpposite(0);
   
 };

@@ -145,11 +145,15 @@ class pic{
     }
   };
   
-  void findOpposite(int []k){
+  void prunePath(){
     
+  };
+  
+  void findOpposite(int k){
+    int n = k;
     if(mousePressed&&mouseButton==RIGHT)
-    for(int i=0;i<k.length;i++){
-      int n = k[i];
+    for(int i=0;i<1;i++){
+      //int n = k[i];
       cell c = start.get(n);
       cell c2 = startBackup.get(n);
       cell next = null;
@@ -183,12 +187,13 @@ class pic{
     }
   };
   
-  void findOpposite(int k){
-    int n = k;
+  
+  void findOpposite(int[] k){
+    int n = 0;
     if(mousePressed&&mouseButton==RIGHT)
-    for(int i=0;i<1;i++){
-      cell c = start.get(n);
-      cell c2 = startBackup.get(n);
+    for(int i=0;i<k.length;i++){
+      cell c = start.get(k[i]);
+      cell c2 = startBackup.get(k[i]);
       cell next = null;
       //c.col = color(0,0,255);
       c.draw2();
@@ -201,21 +206,21 @@ class pic{
           //println("cell opposite",c.id,c2.opposite.id);
           c.visit(next);
           next.parent(c2);
-          stack.get(n).add(next);
-          hist.get(n).add(next);
+          stack.get(k[i]).add(next);
+          hist.get(k[i]).add(next);
           
-          start.set(n,next);
+          start.set(k[i],next);
         }else {
-          //println("cell found",startBackup.get(n).id,next.id);
+          println("cell found",startBackup.get(k[i]).id,next.id);
           break;
         }
-      }else if(stack.get(n).size()>0&&c!=c2.opposite){
-        cell c3 = stack.get(n).get(stack.get(n).size()-1);
+      }else if(stack.get(k[i]).size()>0&&c!=c2.opposite){
+        cell c3 = stack.get(k[i]).get(stack.get(k[i]).size()-1);
         c3.node = true;
-        //println("trimStck",c2.id);
-        start.set(n,c3);
+        println("trimStck",c2.id);
+        start.set(k[i],c3);
       }
-      if(stack.get(n).size()>1)trimStackN(stack.get(n),c2.opposite);
+      if(stack.get(k[i]).size()>1)trimStackN(stack.get(k[i]),c2.opposite);
       //}
     }
   };
